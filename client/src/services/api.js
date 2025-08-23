@@ -4,7 +4,7 @@ const API_BASE_URL = 'https://resume-matcher-1-ppcd.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 60000, // 60s for uploads/AI processing
+  timeout: 180000, // 60s for uploads/AI processing
 });
 
 // Request logging
@@ -49,6 +49,7 @@ export const analyzeResume = async ({ resumeFile, resumeText, jobDescription }) 
 
   const { data } = await api.post('/api/resume/analyze', formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: 180000,
   });
 
   if (!data.success) throw new Error(data.error || 'Analysis failed');
